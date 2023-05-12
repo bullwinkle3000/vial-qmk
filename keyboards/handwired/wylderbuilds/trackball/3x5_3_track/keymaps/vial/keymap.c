@@ -10,15 +10,23 @@
 #define LOWER MO(_LOWER)
 #define MOUSE MO(_MOUSE)
 
-const uint16_t PROGMEM enter_combo1[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM enter_combo2[] = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM tab_combo[] = {KC_S, KC_D, COMBO_END};
+// enum combos {
+//   DF_ENT,
+//   JK_ENT,
+//   SD_TAB,
+//   COMBO_LENGTH
+// };
+// uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(enter_combo1, KC_ENT),
-    COMBO(enter_combo2, KC_ENT),
-    COMBO(tab_combo, KC_TAB),
-};
+// const uint16_t PROGMEM enter_combo1[] = {KC_D, KC_F, COMBO_END};
+// const uint16_t PROGMEM enter_combo2[] = {KC_J, KC_K, COMBO_END};
+// const uint16_t PROGMEM tab_combo[] = {KC_S, KC_D, COMBO_END};
+
+// combo_t key_combos[] = {
+//     [DF_ENT] = COMBO(enter_combo1, KC_ENT),
+//     [JK_ENT] = COMBO(enter_combo2, KC_ENT),
+//     [SD_TAB] = COMBO(tab_combo, KC_TAB),
+// };
 
 // void pointing_device_init_user(void) {
 //     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
@@ -35,10 +43,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 
     [_LOWER] = LAYOUT_split_3x5_3(
-        KC_ESC,     _______,    DRGSCRL,    LALT(KC_F4), KC_KB_VOLUME_UP,        KC_BSLS, KC_7 , KC_8 , KC_9 ,KC_MINS,
-        LCTL(KC_A), KC_BTN3,    KC_DEL,     KC_BTN1,     KC_KB_VOLUME_DOWN,      KC_PAST, KC_4 , KC_5 , KC_6 ,KC_PLUS,
-        LCTL(KC_Z), LCTL(KC_X), LCTL(KC_C), LCTL(KC_V),  _______,                KC_PPLS, KC_1 , KC_2 , KC_3 ,KC_EQL,
-                                            QK_BOOT,     _______, _______,       KC_PDOT,
+        KC_ESC,  _______, DRGSCRL, LALT(KC_F4), KC_VOLU,                KC_BSLS, KC_7 , KC_8 , KC_9 ,KC_MINS,
+        _______, KC_BTN2, KC_DEL,  KC_BTN1,     KC_VOLD,                KC_PAST, KC_4 , KC_5 , KC_6 ,KC_PLUS,
+        _______, _______, _______, _______,     KC_MUTE,                KC_PPLS, KC_1 , KC_2 , KC_3 ,KC_EQL,
+                                   QK_BOOT,     _______, _______,       KC_PDOT,
                                                                                KC_0,
                                                                             KC_BSPC
 
