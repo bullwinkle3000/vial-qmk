@@ -28,9 +28,9 @@
 //     [SD_TAB] = COMBO(tab_combo, KC_TAB),
 // };
 
-// void pointing_device_init_user(void) {
-//     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
-// }
+void pointing_device_init_user(void) {
+    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_split_3x5_3(
