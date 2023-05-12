@@ -10,23 +10,23 @@
 #define LOWER MO(_LOWER)
 #define MOUSE MO(_MOUSE)
 
-// enum combos {
-//   DF_ENT,
-//   JK_ENT,
-//   SD_TAB,
-//   COMBO_LENGTH
-// };
-// uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
+enum combos {
+  DF_ENT,
+  JK_ENT,
+  SD_TAB,
+  COMBO_LENGTH
+};
+uint16_t COMBO_LEN = COMBO_LENGTH; // remove the COMBO_COUNT define and use this instead!
 
-// const uint16_t PROGMEM enter_combo1[] = {KC_D, KC_F, COMBO_END};
-// const uint16_t PROGMEM enter_combo2[] = {KC_J, KC_K, COMBO_END};
-// const uint16_t PROGMEM tab_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM enter_combo1[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM enter_combo2[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_S, KC_D, COMBO_END};
 
-// combo_t key_combos[] = {
-//     [DF_ENT] = COMBO(enter_combo1, KC_ENT),
-//     [JK_ENT] = COMBO(enter_combo2, KC_ENT),
-//     [SD_TAB] = COMBO(tab_combo, KC_TAB),
-// };
+combo_t key_combos[] = {
+    [DF_ENT] = COMBO(enter_combo1, KC_ENT),
+    [JK_ENT] = COMBO(enter_combo2, KC_ENT),
+    [SD_TAB] = COMBO(tab_combo, KC_TAB),
+};
 
 void pointing_device_init_user(void) {
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
