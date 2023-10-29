@@ -125,3 +125,7 @@ layer_state_t layer_state_set_pointing(layer_state_t state) {
     }
     return state;
 }
+
+
+#if defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
+__attribute__((weak)) bool is_mouse_record_keymap(uint16_t keycode, keyrecord_t *record) { return false; }

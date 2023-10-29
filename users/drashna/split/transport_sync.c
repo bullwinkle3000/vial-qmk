@@ -95,6 +95,8 @@ void user_transport_update(void) {
         user_state.audio_enable        = is_audio_on();
         user_state.audio_clicky_enable = is_clicky_on();
 #endif
+#if defined(POINTING_DEVICE_ENABLE) && defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
+        user_state.tap_toggling = get_auto_mouse_toggle();
 #if defined(OLED_ENABLE) && !defined(SPLIT_OLED_ENABLE) && defined(CUSTOM_OLED_DRIVER)
         user_state.is_oled_enabled = is_oled_enabled;
 #endif
@@ -104,6 +106,11 @@ void user_transport_update(void) {
 #ifdef UNICODE_COMMON_ENABLE
         user_state.unicode_mode        = unicode_config.input_mode;
         user_state.unicode_typing_mode = typing_mode;
+#endif
+#if defined(POINTING_DEVICE_ENABLE) && defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
+        if (get_auto_mouse_toggle() != user_state.tap_toggling) {
+            auto_mouse_toggle();
+        }
 #endif
 #ifdef SWAP_HANDS_ENABLE
         user_state.swap_hands = swap_hands;

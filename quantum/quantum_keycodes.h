@@ -799,35 +799,48 @@ enum quantum_keycodes {
 #define EH_LEFT MAGIC_EE_HANDS_LEFT
 #define EH_RGHT MAGIC_EE_HANDS_RIGHT
 
-// GOTO layer - 256 layer max
-#define TO(layer) (QK_TO | ((layer)&0xFF))
+// GOTO layer - 32 layer max
+#define TO(layer) (QK_TO | ((layer)&0x1F))
+#define QK_TO_GET_LAYER(kc) ((kc)&0x1F)
 
-// Momentary switch layer - 256 layer max
-#define MO(layer) (QK_MOMENTARY | ((layer)&0xFF))
+// Momentary switch layer - 32 layer max
+#define MO(layer) (QK_MOMENTARY | ((layer)&0x1F))
+#define QK_MOMENTARY_GET_LAYER(kc) ((kc)&0x1F)
 
-// Set default layer - 256 layer max
-#define DF(layer) (QK_DEF_LAYER | ((layer)&0xFF))
+// Set default layer - 32 layer max
+#define DF(layer) (QK_DEF_LAYER | ((layer)&0x1F))
+#define QK_DEF_LAYER_GET_LAYER(kc) ((kc)&0x1F)
 
-// Toggle to layer - 256 layer max
-#define TG(layer) (QK_TOGGLE_LAYER | ((layer)&0xFF))
+// Toggle to layer - 32 layer max
+#define TG(layer) (QK_TOGGLE_LAYER | ((layer)&0x1F))
+#define QK_TOGGLE_LAYER_GET_LAYER(kc) ((kc)&0x1F)
 
-// One-shot layer - 256 layer max
-#define OSL(layer) (QK_ONE_SHOT_LAYER | ((layer)&0xFF))
+// One-shot layer - 32 layer max
+#define OSL(layer) (QK_ONE_SHOT_LAYER | ((layer)&0x1F))
+#define QK_ONE_SHOT_LAYER_GET_LAYER(kc) ((kc)&0x1F)
 
-// L-ayer M-od: Momentary switch layer with modifiers active - 16 layer max, left mods only
-#define LM(layer, mod) (QK_LAYER_MOD | (((layer)&0xF) << 4) | ((mod)&0xF))
+// L-ayer M-od: Momentary switch layer with modifiers active - 16 layer max
+#define LM(layer, mod) (QK_LAYER_MOD | (((layer)&0xF) << 5) | ((mod)&0x1F))
+#define QK_LAYER_MOD_GET_LAYER(kc) (((kc) >> 5) & 0xF)
+#define QK_LAYER_MOD_GET_MODS(kc) ((kc)&0x1F)
 
 // One-shot mod
-#define OSM(mod) (QK_ONE_SHOT_MOD | ((mod)&0xFF))
+#define OSM(mod) (QK_ONE_SHOT_MOD | ((mod)&0x1F))
+#define QK_ONE_SHOT_MOD_GET_MODS(kc) ((kc)&0x1F)
 
-// Layer tap-toggle
-#define TT(layer) (QK_LAYER_TAP_TOGGLE | ((layer)&0xFF))
+// Layer tap-toggle - 32 layer max
+#define TT(layer) (QK_LAYER_TAP_TOGGLE | ((layer)&0x1F))
+#define QK_LAYER_TAP_TOGGLE_GET_LAYER(kc) ((kc)&0x1F)
 
 // L-ayer, T-ap - 256 keycode max, 16 layer max
 #define LT(layer, kc) (QK_LAYER_TAP | (((layer)&0xF) << 8) | ((kc)&0xFF))
+#define QK_LAYER_TAP_GET_LAYER(kc) (((kc) >> 8) & 0xF)
+#define QK_LAYER_TAP_GET_TAP_KEYCODE(kc) ((kc)&0xFF)
 
 // M-od, T-ap - 256 keycode max
 #define MT(mod, kc) (QK_MOD_TAP | (((mod)&0x1F) << 8) | ((kc)&0xFF))
+#define QK_MOD_TAP_GET_MODS(kc) (((kc) >> 8) & 0x1F)
+#define QK_MOD_TAP_GET_TAP_KEYCODE(kc) ((kc)&0xFF)
 
 #define LCTL_T(kc) MT(MOD_LCTL, kc)
 #define RCTL_T(kc) MT(MOD_RCTL, kc)

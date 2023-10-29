@@ -284,6 +284,9 @@ bool process_record_quantum_helper(uint16_t keycode, keyrecord_t *record) {
             process_record_vial(keycode, record) &&
 #endif
             process_record_kb(keycode, record) &&
+#if defined(POINTING_DEVICE_ENABLE) && defined(POINTING_DEVICE_AUTO_MOUSE_ENABLE)
+    process_auto_mouse(keycode, record) &&
+#endif
 #if defined(SECURE_ENABLE)
             process_secure(keycode, record) &&
 #endif
